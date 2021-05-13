@@ -28,12 +28,12 @@ def downloadFiles():
 
 	
 	for video in videos:
-		print(f'Sto scaricando {video}')
 		m = re.search('.+/mp4:(.+).mp4/.+', video).group(1)
+		print(f'Sto scaricando {m}')
 		command = f'ffmpeg -i "{video}" -c copy "Result/videos/{m}.mp4"'
 		if os.system(command):
 			raise RuntimeError(f'program {command} failed!')
-		print(f'Ho finito di scaricare {video}')
+		print(f'Ho finito di scaricare {m}')
 
 if __name__=="__main__":
 	downloadFiles()

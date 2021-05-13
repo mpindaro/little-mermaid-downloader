@@ -10,6 +10,6 @@ Vai sulla pagina del corso che ti interessa, e premi Ctrl + U per visualizzare i
 
 - Python 3
 - ffmpeg
-- Beautifoul soup (pip install beautifulsoup4>)
+- Beautifoul soup (pip install beautifulsoup4)
 
 Le altre librerie dovrebbero essere standard

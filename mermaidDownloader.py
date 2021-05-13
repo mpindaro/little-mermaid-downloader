@@ -27,7 +27,7 @@ def downloadFiles():
 	print("Ho finito di scaricare slide e altri materiali. Inizio a scaricare le videolezioni")
 
 	
-	for video in videos[20:]:
+	for video in videos:
 		print(f'Sto scaricando {video}')
 		m = re.search('.+/mp4:(.+).mp4/.+', video).group(1)
 		command = f'ffmpeg -i "{video}" -c copy "Result/videos/{m}.mp4"'

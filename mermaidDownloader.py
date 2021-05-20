@@ -61,6 +61,7 @@ def downloadFiles():
 	    if os.system(command):
 		raise RuntimeError(f'program {command} failed!')
 	    print(f'Ho finito di scaricare {m}')
+        i++
 	print("Finito!")
 
 if __name__=="__main__":

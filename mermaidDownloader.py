@@ -28,7 +28,6 @@ def downloadFiles():
 
 	attacched_materials_non_flat =  [ div.find_all("a") for div in soup.find_all("div", class_="arielAttachmentBox")]
 	sitoAriel=""
-	cookies = ""
 	if len(attacched_materials_non_flat)!=0:
 	    sitoAriel = re.search("(https://[\w]+.ariel.ctu.unimi.it/[\w]+)", link).group(1)
 	attached_materials = [{"url":sitoAriel + re.search( '(/.+)', item["href"]).group(1), "name":item.getText() }for sublist in attacched_materials_non_flat for item in sublist]

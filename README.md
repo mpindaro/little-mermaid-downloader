@@ -22,6 +22,7 @@ Per domande mpindaro su telegram se invece a leggere √® qualcuno dell'universit√
 Parametri obbligatori (spiegati sopra):
 - ```url``` 
 - ```cookie```
+**Entrambi devono essere racchiusi tra doppi apici**
 
 Parametri opzionali:
 - ```-video``` per scaricare solo i video

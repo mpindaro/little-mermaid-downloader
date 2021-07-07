@@ -67,7 +67,7 @@ def readInputs():
 		print("Mancano parametri. Mi servono almeno il sito ariel e il cookie!")
 		return
 	if len(inputs) == 2:
-		if bool(re.search('(https://\w+.ariel.ctu.unimi.it/.+)',inputs[0])):
+		if bool(re.search('(https://.+.ariel.ctu.unimi.it/.+)',inputs[0])):
 			downloadFiles(True, True, inputs[0], inputs[1])
 		else:
 			print("Link non valido")

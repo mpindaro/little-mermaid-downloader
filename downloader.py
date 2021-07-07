@@ -73,7 +73,7 @@ def readInputs():
 			print("Link non valido")
 			return
 	else:
-		if bool(re.search('(https://\w+.ariel.ctu.unimi.it/.+)',inputs[-2])):
+		if bool(re.search('(https://.+.ariel.ctu.unimi.it/.+)',inputs[-2])):
 			downloadFiles("-video" in inputs, "-slide" in inputs, inputs[-2], inputs[-1])
 		else:
 			print("Link non valido")

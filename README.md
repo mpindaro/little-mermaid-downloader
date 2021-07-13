@@ -17,7 +17,7 @@ Ho messo sia uno script Python che un Notebook Jupyter, usate quello che preferi
 Per domande mpindaro su telegram se invece a leggere è qualcuno dell'università sono Manuel Dileo.
 
 ### Script Python
-```python3 downloader.py [-video] [-slide] url cookie```
+```python3 downloader.py [-video] [-slide] <url> <cookie>```
 
 Parametri obbligatori (spiegati sopra):
 - ```url``` 
@@ -31,13 +31,27 @@ Parametri opzionali:
 
 Se assenti verrà scaricato tutto. 
 
+### Esempio pratico per Ariel
+
+Su Windows OS il comando da CMD è:
+- C:\\```python.exe downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" "ABCDEFGHJI432121N3JNDS11122121211"```
+
+Su Linux:
+- pippo@LinuxOS:~$```python downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" "ABCDEFGHJI432121N3JNDS11122121211"```
+
+avendo cura di recarsi nella directory dov'è presente lo script.
+Da ricordare:
+- i parametri, rispettivamente, ```url``` e ```cookie``` sono ben delimitati dalle doppie virgolette ". Il separatore tra i due è uno spazio
+- per il download delle videolezioni è necessario avere installato FFmpeg (vedi requisiti in fondo) ed aver impostato la sua cartella /bin/ nell'elenco del PATH (variabile di sistema): [qui](https://www.google.com/search?client=firefox-b-d&q=settare+variabile+d%27ambiente+windows) per sapere come fare
+- non viene scaricato *l'intero sito didattico* ma le singole sezioni, definite da singoli URL 
+
 ### Notebook
 Hai totale libertà evviva! Ma ricorda... [I Don't Like Notebooks](https://docs.google.com/presentation/d/1n2RlMdmv1p25Xy5thJUhkKGvjtV-dkAIsUXP-AL4ffI/edit#slide=id.g362da58057_0_1)
 
 
 ## Requirements
 
-- Python 3
+- [Python 3](https://www.python.org/)
 - Requests e Beautifoul Soup installabili con ```pip install -r requirements.txt```
 - ffmpeg: [Download](https://www.ffmpeg.org/download.html)
 

@@ -16,7 +16,14 @@ Ho messo sia uno script Python che un Notebook Jupyter, usate quello che preferi
 
 Per domande mpindaro su telegram se invece a leggere è qualcuno dell'università sono Manuel Dileo.
 
+Da ricordare:
+
+- Per il download delle videolezioni è necessario avere installato FFmpeg (vedi requisiti in fondo). Potrebbe esserci bisogno di impostare la sua cartella ```/bin/``` nell'elenco del PATH (variabile di sistema): [qui](https://www.google.com/search?client=firefox-b-d&q=settare+variabile+d%27ambiente+windows) per sapere come fare.
+- Non viene scaricato *l'intero sito didattico* ma le singole sezioni, definite da singoli URL. 
+
 ### Script Python
+
+```python3 downloader.py [-video] [-slide] <url> <cookie>```
 
 ```py
 usage: downloader.py [-h] [-v] [-s] url arielAuth
@@ -34,12 +41,32 @@ optional arguments:
 Sia `url` che `arielAuthCookie` vanno racchiusi tra doppi apici
 Se non si specifica nessuna opzione verranno scariati sia video che slide/materiali
 
+#### Esempio pratico per Ariel
+
+Su Windows OS il comando da CMD è:
+- C:\\```python.exe downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" "ABCDEFGHJI432121N3JNDS11122121211"```
+
+Su Linux:
+- pippo@LinuxOS:~$```python downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" "ABCDEFGHJI432121N3JNDS11122121211"```
+
+avendo cura di recarsi nella directory dov'è presente lo script.
+
+
 ### Notebook
 Hai totale libertà evviva! Ma ricorda... [I Don't Like Notebooks](https://docs.google.com/presentation/d/1n2RlMdmv1p25Xy5thJUhkKGvjtV-dkAIsUXP-AL4ffI/edit#slide=id.g362da58057_0_1)
 
 
 ## Requirements
 
-- Python 3
+- [Python 3](https://www.python.org/)
 - Requests e Beautifoul Soup installabili con ```pip install -r requirements.txt```
 - ffmpeg: [Download](https://www.ffmpeg.org/download.html)
+
+
+## Legal Disclaimer
+*Questo programma (c.d. "script") è uno strumento sviluppato per le sole finalità d'uso concesse dal portale didattico Ariel, quindi per uso strettamente personale e di studio, senza condivisione dello stesso a persone terze. Il creatore ed i futuri collaboratori open-source declinano ogni possibile coinvolgimento legale che potrebbe implicare gli utilizzatori dello script.*
+
+*```I contenuti di questa piattaforma sono protetti ai sensi della Legge del 22/04/1941 n. 633 (Protezione del diritto d’autore e di altri diritti connessi al suo esercizio) e successive modificazioni.
+Si ricorda che L’utilizzo di tali contenuti per uso personale, di studio e di ricerca, sono consentiti nell’ambito e con i limiti stabiliti dalla normativa in tema di opere dell’ingegno. È invece tassativamente vietata qualsiasi altra utilizzazione, totale o parziale dei contenuti della presente piattaforma, ivi inclusa la riproduzione e ogni rielaborazione, diffusione, distribuzione o comunicazione al pubblico mediante qualsiasi piattaforma tecnologica, supporto o rete telematica, in assenza di previa autorizzazione scritta dell’Università degli Studi di Milano. Eventuali violazioni saranno segnalate alle Autorità competenti e i trasgressori appartenenti alla Comunità universitaria saranno passibili anche di sanzioni disciplinari.```* [Fonte](https://ariel.unimi.it/documenti/copyright)
+
+Inoltre, ```Si ricorda che, come previsto dall’art. 2 delle “Condizioni di utilizzo e norme sulla privacy di Ariel”, espressamente accettate in occasione del primo accesso al Portale Ariel, il materiale didattico reso disponibile online deve essere utilizzato dagli Utenti esclusivamente per il proprio studio personale, senza ledere i diritti di proprietà intellettuale dei relativi autori. Nessuna riproduzione, diffusione o distribuzione, totale o parziale, di tale materiale è consentita senza preventiva autorizzazione scritta dell’Università degli Studi di Milano. Eventuali violazioni saranno segnalate alle Autorità competenti e i trasgressori appartenenti alla Comunità universitaria passibili di sanzioni disciplinari.```[Fonte](https://ariel.unimi.it/)

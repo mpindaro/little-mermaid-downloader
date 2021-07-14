@@ -22,19 +22,24 @@ Da ricordare:
 - Non viene scaricato *l'intero sito didattico* ma le singole sezioni, definite da singoli URL. 
 
 ### Script Python
+
 ```python3 downloader.py [-video] [-slide] <url> <cookie>```
 
-Parametri obbligatori (spiegati sopra):
-- ```url``` 
-- ```cookie```
+```py
+usage: downloader.py [-h] [-v] [-s] url arielAuth
 
-**Entrambi devono essere racchiusi tra doppi apici**
+positional arguments:
+  url         Link alla pagina dove sono contenuti i materiali e/o le registrazioni
+  arielAuth   Il cookie arielAuth. Vedi README su come ottenerlo
 
-Parametri opzionali:
-- ```-video``` per scaricare solo i video
-- ```-slide``` per scaricare solo slide e materiali
+optional arguments:
+  -h, --help  show this help message and exit
+  -v, -video  Scaricare solamente i video
+  -s, -slide  Scaricare solamente slide/materiali
+```
 
-Se assenti verrà scaricato tutto. 
+Sia `url` che `arielAuthCookie` vanno racchiusi tra doppi apici
+Se non si specifica nessuna opzione verranno scariati sia video che slide/materiali
 
 #### Esempio pratico per Ariel
 
@@ -56,6 +61,7 @@ Hai totale libertà evviva! Ma ricorda... [I Don't Like Notebooks](https://docs.
 - [Python 3](https://www.python.org/)
 - Requests e Beautifoul Soup installabili con ```pip install -r requirements.txt```
 - ffmpeg: [Download](https://www.ffmpeg.org/download.html)
+
 
 ## Legal Disclaimer
 *Questo programma (c.d. "script") è uno strumento sviluppato per le sole finalità d'uso concesse dal portale didattico Ariel, quindi per uso strettamente personale e di studio, senza condivisione dello stesso a persone terze. Il creatore ed i futuri collaboratori open-source declinano ogni possibile coinvolgimento legale che potrebbe implicare gli utilizzatori dello script.*

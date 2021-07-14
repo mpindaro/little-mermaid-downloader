@@ -8,13 +8,13 @@ Tool che scarica tutti materiali (slide e simili) e le videolezioni di un corso 
 
 Il tool chiede in input due elementi:
 - Il link della **sezione** del sito  🧜Ariel🧜 d'interesse. Detto terra terra, **la pagina dove sono contenuti i materiali e/o le registrazioni**, non del corso in generale.
-- Il cookie **arielauth**. Per ottenerlo basta aprire da un qualsiasi sito 🧜Ariel🧜 i Developers Tools, **è necessario essere loggati**. In particolare mi riferirò a Chrome, ma dovrebbe essere circa lo stesso anche per gli altri browser. Da lì ```Application > Storage > Cookies > Cookies di uni*me*```. A questo punto dovreste trovarvi una tabella con header Name - Value - Domain - etc. Di questa tabella ci interessa, come detto prima, solo il cookie arielauth. Trovatelo, copiate il valore e datelo in pasto al tool. È importante che il cookie sia ancora caldo di forno (**dovete esservi loggati da poco**).
+- Il cookie **arielauth**. Per ottenerlo basta aprire da un qualsiasi sito 🧜Ariel🧜 i Developers Tools, **è necessario essere loggati**. In particolare mi riferirò a Chrome, ma dovrebbe essere circa lo stesso anche per gli altri browser. Da lì ```Application > Storage > Cookies > Cookies di uni*me*```. A questo punto dovreste trovarvi una tabella con header *Name - Value - Domain - etc*. Di questa tabella ci interessa, come detto prima, solo il cookie arielauth. Trovatelo, copiate il valore e datelo in pasto al tool. È importante che il cookie sia ancora caldo di forno (**dovete esservi loggati da poco**).
 
-Ho messo sia uno script Python che un Notebook Jupyter, usate quello che preferite. Verrà scaricato tutto in una cartella ```Result```, in particolare i video saranno sotto ```Result/videos```
+Ho messo sia uno script Python che un Notebook Jupyter, usate quello che preferite. **Verrà scaricato tutto in una cartella ```Result```, in particolare i video saranno sotto ```Result/videos```**
 
-⚠️Se i file scaricati sono corrotti o illeggibili significa che il cookie è scaduto nel mentre e che va reinserito. Questo discorso vale per le slide, i video non ne hanno bisogno⚠️
+⚠️Se i file scaricati sono corrotti o illeggibili significa che il cookie è scaduto nel mentre e che va reinserito. Questo discorso vale solo per le slide⚠️
 
-Per domande mpindaro su telegram se invece a leggere è qualcuno dell'università sono Manuel Dileo.
+Per domande @mpindaro su telegram se invece a leggere è qualcuno dell'università sono Manuel Dileo.
 
 Da ricordare:
 
@@ -23,7 +23,9 @@ Da ricordare:
 
 ### Script Python
 
-```python3 downloader.py [-video] [-slide] <url> <cookie>```
+```console 
+python3 downloader.py [-video] [-slide] <url> <arielAuth>
+```
 
 ```py
 usage: downloader.py [-h] [-v] [-s] url arielAuth
@@ -38,16 +40,14 @@ optional arguments:
   -s, -slide  Scaricare solamente slide/materiali
 ```
 
-Sia `url` che `arielAuthCookie` vanno racchiusi tra doppi apici
+**Sia `url` che `arielAuthCookie` vanno racchiusi tra doppi apici**
 Se non si specifica nessuna opzione verranno scariati sia video che slide/materiali
 
 #### Esempio pratico per Ariel
 
-Su Windows OS il comando da CMD è:
-- C:\\```python.exe downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" "ABCDEFGHJI432121N3JNDS11122121211"```
+- Windows, comando da CMD - C:\\```python.exe downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" "ABCDEFGHJI432121N3JNDS11122121211"```
 
-Su Linux:
-- pippo@LinuxOS:~$```python downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" "ABCDEFGHJI432121N3JNDS11122121211"```
+- Linux - pippo@LinuxOS:~$```python downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" "ABCDEFGHJI432121N3JNDS11122121211"```
 
 avendo cura di recarsi nella directory dov'è presente lo script.
 

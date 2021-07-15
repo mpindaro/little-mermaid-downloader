@@ -5,6 +5,7 @@ import argparse
 import re
 import requests
 import os
+import urllib.parse
 
 
 def arielUrl(arg: str):
@@ -20,37 +21,41 @@ def downloadFiles(askedVideos, askedFiles, link, arielauth):
     r = requests.post(link, allow_redirects=True, cookies=cookies)
     soup = bs(r.text, "html.parser")
 
+    baseName = os.path.join(
+        'output',
+        soup.select_one('.navbar-brand a span').getText().strip(),
+        soup.select_one('#forum-header h1.arielTitle').getText().strip()
+    )
+
     if askedFiles:
-        materials_nonflat = [div.find_all("a") for div in soup.find_all(
-            "div", class_="arielMessageBody")]
-        materials = [item["href"]
-                     for sublist in materials_nonflat for item in sublist]
+        # aggiungere qualche tipo di check se sono file o pagine web
+        materials = [
+            {
+                'url': element['href'],
+                'name': os.path.join(baseName, element['href'].split('/')[-1])
+            }
+            for element in soup.select('.arielMessageBody a')]
 
-        attacched_materials_non_flat = [div.find_all(
-            "a") for div in soup.find_all("div", class_="arielAttachmentBox")]
-        sitoAriel = ""
-        if len(attacched_materials_non_flat) != 0:
-            sitoAriel = re.search(
-                "(https://[\w]+.ariel.ctu.unimi.it/[\w]+)", link).group(1)
-        attached_materials = [{"url": sitoAriel + re.search('(/.+)', item["href"]).group(
-            1), "name":item.getText()}for sublist in attacched_materials_non_flat for item in sublist]
+        materials.extend([
+            {
+                'url': urllib.parse.urljoin(link, element['href']),
+                'name': os.path.join(baseName, element.getText())
+            }
+            for element in soup.select('.arielAttachmentBox a')
+        ])
 
-        for materiale in materials:
-            print(f"Sto scaricando {materiale}")
-            m = re.search('.+/(.+)', materiale).group(1).strip('/')
-            r = requests.get(materiale, allow_redirects=True)
-            os.makedirs(os.path.dirname("Result/"), exist_ok=True)
-            with open('Result/' + m, 'wb+') as f:
-                f.write(r.content)
+        for item in materials:
+            print(f'Sto scaricando {item["name"]}')
+            os.makedirs(
+                os.path.dirname(item['name']), exist_ok=True
+            )
 
-        for materiale in attached_materials:
-            print(f"Sto scaricando {materiale['name']}")
-            r = requests.post(materiale["url"],
-                              allow_redirects=True, cookies=cookies)
-            os.makedirs(os.path.dirname("Result/"), exist_ok=True)
-            with open('Result/' + materiale["name"], 'wb+') as f:
-                f.write(r.content)
-        print("Ho finito di scaricare slide e altri materiali.")
+            with open(item['name'], 'wb+') as f:
+                f.write(
+                    requests.get(item['url'], allow_redirects=True).content
+                )
+
+        print('Ho finito di scaricare slide e altri materiali.')
 
     if askedVideos:
 

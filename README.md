@@ -10,7 +10,7 @@ Il tool chiede in input due elementi:
 - Il link della **sezione** del sito  🧜Ariel🧜 d'interesse. Detto terra terra, **la pagina dove sono contenuti i materiali e/o le registrazioni**, non del corso in generale.
 - Il cookie **arielauth**. Per ottenerlo basta aprire da un qualsiasi sito 🧜Ariel🧜 i Developers Tools, **è necessario essere loggati**. In particolare mi riferirò a Chrome, ma dovrebbe essere circa lo stesso anche per gli altri browser. Da lì ```Application > Storage > Cookies > Cookies di uni*me*```. A questo punto dovreste trovarvi una tabella con header *Name - Value - Domain - etc*. Di questa tabella ci interessa, come detto prima, solo il cookie arielauth. Trovatelo, copiate il valore e datelo in pasto al tool. È importante che il cookie sia ancora caldo di forno (**dovete esservi loggati da poco**).
 
-Ho messo sia uno script Python che un Notebook Jupyter, usate quello che preferite. **Verrà scaricato tutto in una cartella ```Result```, in particolare i video saranno sotto ```Result/videos```**
+Ho messo sia uno script Python che un Notebook Jupyter, usate quello che preferite. **Verrà scaricato tutto in una cartella ```output```, in particolare i video saranno sotto ```output/videos```**
 
 ⚠️Se i file scaricati sono corrotti o illeggibili significa che il cookie è scaduto nel mentre e che va reinserito. Questo discorso vale solo per le slide⚠️
 

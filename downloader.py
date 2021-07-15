@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
+from ntpath import join
 from bs4 import BeautifulSoup as bs
 import argparse
 import re
 import requests
 import os
 import urllib.parse
+
+from requests.api import patch
 
 
 def arielUrl(arg: str):
@@ -58,22 +61,33 @@ def downloadFiles(askedVideos, askedFiles, link, arielauth):
         print('Ho finito di scaricare slide e altri materiali.')
 
     if askedVideos:
+        baseName = os.path.join(baseName, 'videos')
 
-        videos = [div.find("video").find("source")["src"] for div in soup.find_all(
-            "div", class_="embed-responsive embed-responsive-16by9")]
+        videoList = [
+            {
+                'url': element['src'],
+                'name': os.path.join(
+                    baseName,
+                    re.search(r'mp4:(.*)/', element['src'], re.IGNORECASE)[1]
+                )
+            }
+            for element in soup.select('.lecturecVideo source')
+        ]
 
-        i = 1
-        for video in videos:
-            m = re.search('.+/mp4:(.+)(.mp4|.MP4)/.+',
-                          video).group(1).replace("%20", " ")
-            print(f'Sto scaricando {m}. Progresso: {i}/{len(videos)}')
-            os.makedirs(os.path.dirname("Result/videos/"), exist_ok=True)
-            command = f'ffmpeg -i "{video}" -loglevel quiet -y -c copy "Result/videos/{m}.mp4"'
+        for i, video in enumerate(videoList, start=1):
+            print(
+                f'Sto scaricando {video["name"]}. \n' +
+                f'Progresso: {i}/{len(videoList)}'
+            )
+            os.makedirs(os.path.dirname(video['name']), exist_ok=True)
+
+            command = f'ffmpeg -i "{video["url"]}" -loglevel quiet -y -c copy "{video["name"]}"'
             if os.system(command):
                 raise RuntimeError(f'program {command} failed!')
-            print(f'Ho finito di scaricare {m}')
-            i = i+1
-    print("Finito!")
+
+            print('Dowload completato! \n')
+
+    print('Finito!')
 
 
 def readInputs():

@@ -24,20 +24,25 @@ Da ricordare:
 ### Script Python
 
 ```console 
-python3 downloader.py [-video] [-slide] <url> <arielAuth>
+python3 downloader.py [-arielAuth] [-video] [-slide] [-username] [-password] <url>
 ```
 
 ```py
-usage: downloader.py [-h] [-v] [-s] url arielAuth
+usage: downloader.py [-h] [-a ARIELAUTH] [-v] [-s] [-u USERNAME] [-p PASSWORD] url
 
 positional arguments:
-  url         Link alla pagina dove sono contenuti i materiali e/o le registrazioni
-  arielAuth   Il cookie arielAuth. Vedi README su come ottenerlo
+  url                   Link alla pagina dove sono contenuti i materiali e/o le registrazioni
 
 optional arguments:
-  -h, --help  show this help message and exit
-  -v, -video  Scaricare solamente i video
-  -s, -slide  Scaricare solamente slide/materiali
+  -h, --help            show this help message and exit
+  -a ARIELAUTH, --arielAuth ARIELAUTH
+                        Il cookie arielAuth. Vedi README su come ottenerlo
+  -v, --video           Scaricare solamente i video
+  -s, --slide           Scaricare solamente slide/materiali
+  -u USERNAME, --username USERNAME
+                        Nome utente con cui fare il login
+  -p PASSWORD, --password PASSWORD
+                        Password con cui fare il login
 ```
 
 **Sia `url` che `arielAuthCookie` vanno racchiusi tra doppi apici**

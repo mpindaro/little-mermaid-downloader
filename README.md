@@ -47,7 +47,7 @@ optional arguments:
 ```
 
 **`Url`, `arielAuth`, `username` e `password`  vanno racchiusi tra doppi apici**
-Se non si specifica nessuna opzione circa i download verranno scaricati sia video che slide/materiali. Bisogna specificare obbligatoriamente o il cooke `arielAuth` o username e passoword.
+Se non si specifica nessuna opzione circa i download verranno scaricati sia video che slide/materiali. Bisogna specificare obbligatoriamente o il cookie `arielAuth` o username e passoword.
 
 #### Esempi
 

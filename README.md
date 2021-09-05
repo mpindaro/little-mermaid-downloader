@@ -4,7 +4,7 @@ Tool che scarica tutti materiali (slide e simili) e le videolezioni di un corso 
 
 
 ![](https://thumbs-prod.si-cdn.com/YVaC3lqx4bk9jPIThb-0RJnKbbw=/800x600/filters:no_upscale()/https://public-media.si-cdn.com/filer/26/34/26349ee5-df4d-4595-8d77-674a8ef40fc0/t03pxm.jpg)
-## Utilizzo
+## Descrizione
 
 Il tool chiede in input due elementi:
 - Il link della **sezione** del sito  🧜Ariel🧜 d'interesse. Detto terra terra, **la pagina dove sono contenuti i materiali e/o le registrazioni**, non del corso in generale.
@@ -22,7 +22,7 @@ Da ricordare:
 - Per il download delle videolezioni è necessario avere installato FFmpeg (vedi requisiti in fondo). Potrebbe esserci bisogno di impostare la sua cartella ```/bin/``` nell'elenco del PATH (variabile di sistema): [qui](https://www.google.com/search?client=firefox-b-d&q=settare+variabile+d%27ambiente+windows) per sapere come fare.
 - Non viene scaricato *l'intero sito didattico* ma le singole sezioni, definite da singoli URL. 
 
-### Script Python
+### Utilizzo
 
 ```console 
 python3 downloader.py [-arielAuth] [-video] [-slide] [-username] [-password] <url>
@@ -49,7 +49,7 @@ optional arguments:
 **`Url`, `arielAuth`, `username` e `password`  vanno racchiusi tra doppi apici**
 Se non si specifica nessuna opzione circa i download verranno scaricati sia video che slide/materiali. Bisogna specificare obbligatoriamente o il cooke `arielAuth` o username e passoword.
 
-#### Esempio pratico per Ariel
+#### Esempi
 
 - Windows, comando da CMD - C:\\```python.exe downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" -a "ABCDEFGHJI432121N3JNDS11122121211"```
 
@@ -59,8 +59,7 @@ Se non si specifica nessuna opzione circa i download verranno scaricati sia vide
 avendo cura di recarsi nella directory dov'è presente lo script.
 
 
-### Notebook
-Hai totale libertà evviva! Ma ricorda... [I Don't Like Notebooks](https://docs.google.com/presentation/d/1n2RlMdmv1p25Xy5thJUhkKGvjtV-dkAIsUXP-AL4ffI/edit#slide=id.g362da58057_0_1)
+[I Don't Like Notebooks](https://docs.google.com/presentation/d/1n2RlMdmv1p25Xy5thJUhkKGvjtV-dkAIsUXP-AL4ffI/edit#slide=id.g362da58057_0_1)
 
 
 ## Requirements

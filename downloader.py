@@ -7,6 +7,21 @@ import requests
 import os
 
 
+def login(username, password):
+    resp = requests.post(
+            "https://elearning.unimi.it/authentication/skin/portaleariel/login.aspx?url=https://ariel.unimi.it/",
+            data={
+                "hdnSilent": "true",
+                "tbLogin": username,
+                "tbPassword": password,
+                "ddlType": ""
+            }
+    )
+    if len(resp.history) == 0:
+        raise Exception("Username o password non corretti")
+    return resp.cookies.get("arielauth")
+
+
 def arielUrl(arg: str):
     if re.match(r'(https:\/\/.+.ariel.ctu.unimi.it/.+)', arg):
         return arg
@@ -76,14 +91,23 @@ def readInputs():
 
     parser.add_argument('url', type=arielUrl,
                         help='Link alla pagina dove sono contenuti i materiali e/o le registrazioni')
-    parser.add_argument('arielAuth', type=str,
+    parser.add_argument('-a', '--arielAuth', type=str,
                         help='Il cookie arielAuth. Vedi README su come ottenerlo')
     parser.add_argument('-v', '--video', action="store_true", default=False,
                         help='Scaricare solamente i video')
     parser.add_argument('-s', '--slide', action="store_true", default=False,
                         help='Scaricare solamente slide/materiali')
+    parser.add_argument('-u', '--username', type=str,
+                        help='Nome utente con cui fare il login')
+    parser.add_argument('-p', '--password', type=str,
+                        help='Password con cui fare il login')
 
     args = parser.parse_args()
+
+    if (not args.username or not args.password) and not args.arielAuth:
+        raise argparse.ArgumentError(None, "Passare username e password oppure il cookie usando arielAuth")
+    if args.username and args.password:
+        args.arielAuth = login(args.username, args.password)
 
     # default
     if not args.video and not args.slide:

@@ -9,6 +9,7 @@ Tool che scarica tutti materiali (slide e simili) e le videolezioni di un corso 
 Il tool chiede in input due elementi:
 - Il link della **sezione** del sito  🧜Ariel🧜 d'interesse. Detto terra terra, **la pagina dove sono contenuti i materiali e/o le registrazioni**, non del corso in generale.
 - Il cookie **arielauth**. Per ottenerlo basta aprire da un qualsiasi sito 🧜Ariel🧜 i Developers Tools, **è necessario essere loggati**. In particolare mi riferirò a Chrome, ma dovrebbe essere circa lo stesso anche per gli altri browser. Da lì ```Application > Storage > Cookies > Cookies di uni*me*```. A questo punto dovreste trovarvi una tabella con header *Name - Value - Domain - etc*. Di questa tabella ci interessa, come detto prima, solo il cookie arielauth. Trovatelo, copiate il valore e datelo in pasto al tool. È importante che il cookie sia ancora caldo di forno (**dovete esservi loggati da poco**).
+- In alternativa al cookie è possibile inserire il proprio username e passoword.
 
 Ho messo sia uno script Python che un Notebook Jupyter, usate quello che preferite. **Verrà scaricato tutto in una cartella ```Result```, in particolare i video saranno sotto ```Result/videos```**
 
@@ -45,14 +46,15 @@ optional arguments:
                         Password con cui fare il login
 ```
 
-**Sia `url` che `arielAuthCookie` vanno racchiusi tra doppi apici**
-Se non si specifica nessuna opzione verranno scariati sia video che slide/materiali
+**`Url`, `arielAuth`, `username` e `password`  vanno racchiusi tra doppi apici**
+Se non si specifica nessuna opzione circa i download verranno scaricati sia video che slide/materiali. Bisogna specificare obbligatoriamente o il cooke `arielAuth` o username e passoword.
 
 #### Esempio pratico per Ariel
 
-- Windows, comando da CMD - C:\\```python.exe downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" "ABCDEFGHJI432121N3JNDS11122121211"```
+- Windows, comando da CMD - C:\\```python.exe downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" -a "ABCDEFGHJI432121N3JNDS11122121211"```
 
-- Linux - pippo@LinuxOS:~$```python downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" "ABCDEFGHJI432121N3JNDS11122121211"```
+- Linux - pippo@LinuxOS:~$```python downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" -a "ABCDEFGHJI432121N3JNDS11122121211"```
+- Linux - pippo@LinuxOS:~$```python downloader.py "https://<nome insegnamento>.ariel.ctu.unimi.it/<etc>" -u "pippo.pluto@studenti.unimi.it" -p "Banana33"```
 
 avendo cura di recarsi nella directory dov'è presente lo script.
 

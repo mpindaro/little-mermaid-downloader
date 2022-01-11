@@ -48,7 +48,7 @@ def downloadFiles(askedVideos, askedFiles, link, arielauth):
             sitoAriel = re.search(
                 "(https://[\w]+.ariel.ctu.unimi.it/[\w]+)", link).group(1)
         attached_materials = [{"url": sitoAriel + re.search('(/.+)', item["href"]).group(
-            1), "name":item.getText()}for sublist in attacched_materials_non_flat for item in sublist]
+            1), "name":item.getText().replace('/','-').replace('\\','-')}for sublist in attacched_materials_non_flat for item in sublist]
 
         for materiale in materials:
             print(f"Sto scaricando {materiale}")

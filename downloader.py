@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
-from bs4 import BeautifulSoup as bs
 import argparse
 import re
-import requests
 import os
+from sys import stderr
+from traceback import print_exc
+
+import requests
+from bs4 import BeautifulSoup as bs
 
 
 def login(username, password):
@@ -29,7 +32,7 @@ def arielUrl(arg: str):
     raise argparse.ArgumentTypeError(f"'{arg}' non è un link Ariel valido!")
 
 
-def downloadFiles(askedVideos, askedFiles, link, arielauth):
+def downloadFiles(askedVideos, askedFiles, link, arielauth, quiet):
     cookies = {"arielauth": f"{arielauth}"}
 
     r = requests.post(link, allow_redirects=True, cookies=cookies)
@@ -51,20 +54,28 @@ def downloadFiles(askedVideos, askedFiles, link, arielauth):
             1), "name":item.getText().replace('/','-').replace('\\','-')}for sublist in attacched_materials_non_flat for item in sublist]
 
         for materiale in materials:
-            print(f"Sto scaricando {materiale}")
-            m = re.search('.+/(.+)', materiale).group(1).strip('/')
-            r = requests.get(materiale, allow_redirects=True)
-            os.makedirs(os.path.dirname("Result/"), exist_ok=True)
-            with open('Result/' + m, 'wb+') as f:
-                f.write(r.content)
+            try:
+                print(f"Sto scaricando {materiale}")
+                m = re.search('.+/(.+)', materiale).group(1).strip('/')
+                r = requests.get(materiale, allow_redirects=True)
+                os.makedirs(os.path.dirname("Result/"), exist_ok=True)
+                with open('Result/' + m, 'wb+') as f:
+                    f.write(r.content)
+            except Exception:
+                if not quiet:
+                    print_exc()
 
         for materiale in attached_materials:
-            print(f"Sto scaricando {materiale['name']}")
-            r = requests.post(materiale["url"],
-                              allow_redirects=True, cookies=cookies)
-            os.makedirs(os.path.dirname("Result/"), exist_ok=True)
-            with open('Result/' + materiale["name"], 'wb+') as f:
-                f.write(r.content)
+            try:
+                print(f"Sto scaricando {materiale['name']}")
+                r = requests.post(materiale["url"],
+                                  allow_redirects=True, cookies=cookies)
+                os.makedirs(os.path.dirname("Result/"), exist_ok=True)
+                with open('Result/' + materiale["name"], 'wb+') as f:
+                    f.write(r.content)
+            except Exception:
+                if not quiet:
+                    print_exc()
         print("Ho finito di scaricare slide e altri materiali.")
 
     if askedVideos:
@@ -101,6 +112,8 @@ def readInputs():
                         help='Nome utente con cui fare il login')
     parser.add_argument('-p', '--password', type=str,
                         help='Password con cui fare il login')
+    parser.add_argument('-q', '--quiet', action="store_true", default=False,
+                        help='Nasconde i messaggi di errore')
 
     args = parser.parse_args()
 
@@ -111,9 +124,9 @@ def readInputs():
 
     # default
     if not args.video and not args.slide:
-        downloadFiles(True, True, args.url, args.arielAuth)
+        downloadFiles(True, True, args.url, args.arielAuth, args.quiet)
     else:
-        downloadFiles(args.video, args.slide, args.url, args.arielAuth)
+        downloadFiles(args.video, args.slide, args.url, args.arielAuth, args.quiet)
 
 
 if __name__ == "__main__":

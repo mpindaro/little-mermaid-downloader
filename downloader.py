@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
-from bs4 import BeautifulSoup as bs
 import argparse
 import re
-import requests
 import os
+from sys import stderr
+from traceback import print_exc
+
+import requests
+from bs4 import BeautifulSoup as bs
 
 
 def login(username, password):
@@ -58,8 +61,8 @@ def downloadFiles(askedVideos, askedFiles, link, arielauth):
                 os.makedirs(os.path.dirname("Result/"), exist_ok=True)
                 with open('Result/' + m, 'wb+') as f:
                     f.write(r.content)
-            except:
-                pass
+            except Exception:
+                print_exc()
 
         for materiale in attached_materials:
             try:
@@ -69,8 +72,8 @@ def downloadFiles(askedVideos, askedFiles, link, arielauth):
                 os.makedirs(os.path.dirname("Result/"), exist_ok=True)
                 with open('Result/' + materiale["name"], 'wb+') as f:
                     f.write(r.content)
-            except:
-                pass
+            except Exception:
+                print_exc()
         print("Ho finito di scaricare slide e altri materiali.")
 
     if askedVideos:

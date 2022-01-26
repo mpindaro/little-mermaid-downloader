@@ -51,20 +51,26 @@ def downloadFiles(askedVideos, askedFiles, link, arielauth):
             1), "name":item.getText().replace('/','-').replace('\\','-')}for sublist in attacched_materials_non_flat for item in sublist]
 
         for materiale in materials:
-            print(f"Sto scaricando {materiale}")
-            m = re.search('.+/(.+)', materiale).group(1).strip('/')
-            r = requests.get(materiale, allow_redirects=True)
-            os.makedirs(os.path.dirname("Result/"), exist_ok=True)
-            with open('Result/' + m, 'wb+') as f:
-                f.write(r.content)
+            try:
+                print(f"Sto scaricando {materiale}")
+                m = re.search('.+/(.+)', materiale).group(1).strip('/')
+                r = requests.get(materiale, allow_redirects=True)
+                os.makedirs(os.path.dirname("Result/"), exist_ok=True)
+                with open('Result/' + m, 'wb+') as f:
+                    f.write(r.content)
+            except:
+                pass
 
         for materiale in attached_materials:
-            print(f"Sto scaricando {materiale['name']}")
-            r = requests.post(materiale["url"],
-                              allow_redirects=True, cookies=cookies)
-            os.makedirs(os.path.dirname("Result/"), exist_ok=True)
-            with open('Result/' + materiale["name"], 'wb+') as f:
-                f.write(r.content)
+            try:
+                print(f"Sto scaricando {materiale['name']}")
+                r = requests.post(materiale["url"],
+                                  allow_redirects=True, cookies=cookies)
+                os.makedirs(os.path.dirname("Result/"), exist_ok=True)
+                with open('Result/' + materiale["name"], 'wb+') as f:
+                    f.write(r.content)
+            except:
+                pass
         print("Ho finito di scaricare slide e altri materiali.")
 
     if askedVideos:

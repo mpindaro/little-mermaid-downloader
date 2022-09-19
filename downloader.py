@@ -85,7 +85,7 @@ def downloadFiles(askedVideos, askedFiles, link, arielauth, quiet):
 
         i = 1
         for video in videos:
-            m = re.search('.+/mp4:(.+)(.mp4|.MP4)/.+',
+            m = re.search('.+/mp4:(.+)(.mp4|.MP4|m4v)/.+',
                           video).group(1).replace("%20", " ")
             print(f'Sto scaricando {m}. Progresso: {i}/{len(videos)}')
             os.makedirs(os.path.dirname("Result/videos/"), exist_ok=True)
